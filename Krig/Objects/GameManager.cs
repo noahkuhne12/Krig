@@ -48,6 +48,9 @@ namespace Krig
         {
             Queue<Card> pool = new Queue<Card>();
 
+            Console.WriteLine(Player1.Deck.Count);
+            Console.WriteLine(Player2.Deck.Count);
+
             var player1card = Player1.Deck.Dequeue();
             var player2card = Player2.Deck.Dequeue();
 
@@ -95,12 +98,18 @@ namespace Krig
             //This uses our custom extension method from earlier.
             if (player1card.Value < player2card.Value)
             {
-                Player2.Deck.Enqueue(pool);
+                foreach (var card in pool)
+                {
+                    Player2.Deck.Enqueue(card);
+                }
                 Console.WriteLine(Player2.Name + " takes the hand!");
             }
             else
             {
-                Player1.Deck.Enqueue(pool);
+                foreach (var card in pool)
+                {
+                    Player1.Deck.Enqueue(card);
+                }
                 Console.WriteLine(Player1.Name + " takes the hand!");
             }
 

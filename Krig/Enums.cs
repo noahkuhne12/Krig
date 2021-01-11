@@ -6,6 +6,7 @@ namespace Krig
 {
     public enum Suit
     {
+
         Clubs,
         Diamonds,
         Spades,
