@@ -29,11 +29,11 @@ namespace Krig.Objects
         {
             //Shuffle the existing cards using Fisher-Yates Modern
             List<Card> transformedCards = cards.ToList();
-            Random r = new Random(DateTime.Now.Millisecond);
+            Random random = new Random();
             for (int n = transformedCards.Count - 1; n > 0; --n)
             {
                 //Step 2: Randomly pick a card which has not been shuffled
-                int k = r.Next(n + 1);
+                int k = random.Next(n + 1);
 
                 //Step 3: Swap the selected item with the last "unselected" card in the collection
                 Card temp = transformedCards[n];

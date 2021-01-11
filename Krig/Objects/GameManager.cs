@@ -56,6 +56,9 @@ namespace Krig
 
             Console.WriteLine(Player1.Name + " plays " + player1card.DisplayName + ", " + Player2.Name + " plays " + player2card.DisplayName);
 
+            //Step 2: If the cards have the same value, we have a War!
+            //IMPORTANT: We CONTINUE to have a war 
+            // as long as the flipped cards are the same value.
             while (player1card.Value == player2card.Value)
             {
                 Console.WriteLine("WAR!");
@@ -70,6 +73,7 @@ namespace Krig
                     return;
                 }
 
+                //Add three "face-down" cards from each player to a common pool
                 pool.Enqueue(Player1.Deck.Dequeue());
                 pool.Enqueue(Player1.Deck.Dequeue());
                 pool.Enqueue(Player1.Deck.Dequeue());
@@ -77,15 +81,18 @@ namespace Krig
                 pool.Enqueue(Player2.Deck.Dequeue());
                 pool.Enqueue(Player2.Deck.Dequeue());
 
+                //Pop the fourth card from each player's deck
                 player1card = Player1.Deck.Dequeue();
                 player2card = Player2.Deck.Dequeue();
 
                 pool.Enqueue(player1card);
                 pool.Enqueue(player2card);
-
                 Console.WriteLine(Player1.Name + " plays " + player1card.DisplayName + ", " + Player2.Name + " plays " + player2card.DisplayName);
             }
 
+            //Add the won cards to the winning player's deck, 
+            //and display which player won that hand.  
+            //This uses our custom extension method from earlier.
             if (player1card.Value < player2card.Value)
             {
                 Player2.Deck.Enqueue(pool);
